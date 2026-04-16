@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-const API_URL = 'http://localhost:5174/api/chat';
+const API_URL = '/api/chat';
 
 function App() {
   const [prompt, setPrompt] = useState('');
