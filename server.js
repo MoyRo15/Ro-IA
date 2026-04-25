@@ -23,8 +23,11 @@ app.all('/api/chat', (req, res) => onStart({ req, res }));
 // ✅ Servir le build Vite
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// ✅ Fallback React (toujours en dernie
-app.get('*', (req, res) => {
+// ✅ Fallback React (laisse passer les routes API)
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    return next();
+  }
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
